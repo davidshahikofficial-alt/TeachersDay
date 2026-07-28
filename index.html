@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajat Sir — Thank You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#15100D;
+    --bg-panel:#1E1712;
+    --gold:#C9962E;
+    --gold-soft:#E0BD73;
+    --red:#A6453A;
+    --cream:#F2E8DB;
+    --muted:#AE9C89;
+    --line:rgba(242,232,219,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-dark);
+    color:var(--cream);
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  a{color:inherit;}
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background-image:
+      linear-gradient(100deg, rgba(21,16,13,0.94) 0%, rgba(21,16,13,0.55) 42%, rgba(21,16,13,0.2) 68%),
+      linear-gradient(0deg, rgba(21,16,13,0.9) 0%, rgba(21,16,13,0.1) 30%),
+      url('images/hero.jpg');
+    background-size:cover;
+    background-position:center 18%;
+    display:flex;
+    align-items:center;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 6vw;
+    opacity:0;
+    animation:riseIn 1.1s ease-out 0.2s forwards;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .hero-inner{max-width:640px;}
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(2.8rem, 7.5vw, 5.6rem);
+    line-height:0.98;
+    margin:0.5rem 0 1.1rem;
+    letter-spacing:-0.01em;
+  }
+  .hero p.tag{
+    font-size:1.05rem;
+    color:var(--muted);
+    max-width:36ch;
+    font-weight:300;
+  }
+
+  /* ticket stub — signature element */
+  .stub{
+    position:absolute;
+    right:6vw;
+    bottom:-2.4rem;
+    z-index:3;
+    width:min(280px, 62vw);
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:1.4rem 1.3rem 1.1rem;
+    transform:rotate(-3.5deg);
+    box-shadow:0 24px 50px -18px rgba(0,0,0,0.65);
+    opacity:0;
+    animation:stubIn 1s ease-out 0.7s forwards;
+  }
+  @keyframes stubIn{
+    from{opacity:0; transform:rotate(-3.5deg) translateY(18px);}
+    to{opacity:1; transform:rotate(-3.5deg) translateY(0);}
+  }
+  .stub::before, .stub::after{
+    content:'';
+    position:absolute;
+    width:16px; height:16px;
+    background:var(--bg-dark);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .stub::before{left:-8px;}
+  .stub::after{right:-8px;}
+  .stub .stub-top{
+    display:flex;
+    align-items:center;
+    gap:0.55rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    padding-bottom:0.8rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .stub .stub-name{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.4rem;
+    color:var(--cream);
+    margin:0.9rem 0 0.3rem;
+  }
+  .stub .stub-tag{
+    font-family:'Inter', sans-serif;
+    font-size:0.82rem;
+    color:var(--muted);
+    margin-bottom:0.9rem;
+  }
+  .stub .stub-row{
+    display:flex;
+    justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:0.3rem;
+  }
+  .stub .stub-row b{color:var(--gold);}
+  .stub .barcode{
+    margin-top:0.9rem;
+    height:20px;
+    background:repeating-linear-gradient(90deg, var(--muted) 0 1px, transparent 1px 3px, var(--gold) 3px 4px, transparent 4px 7px);
+    opacity:0.55;
+  }
+
+  @media (max-width:700px){
+    .stub{position:static; transform:rotate(0); margin:2rem auto 0; width:min(280px,90vw);}
+    .stub::before, .stub::after{display:none;}
+    @keyframes stubIn{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
+    .hero{align-items:flex-start; padding-top:14vh; padding-bottom:3rem;}
+    .hero-inner{display:flex; flex-direction:column;}
+  }
+
+  /* ================= SECTIONS ================= */
+  section{
+    padding:7rem 6vw 6rem;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* letter, editorial layout */
+  .letter-wrap{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:3rem;
+  }
+  @media (max-width:760px){
+    .letter-wrap{grid-template-columns:1fr; gap:1.2rem;}
+  }
+  .letter-wrap .eyebrow{
+    align-self:start;
+    padding-top:0.5rem;
+  }
+  .letter{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(1.25rem, 2.2vw, 1.65rem);
+    line-height:1.6;
+    color:var(--cream);
+    max-width:52ch;
+  }
+  .letter .drop{
+    float:left;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:4.6rem;
+    line-height:0.8;
+    color:var(--gold);
+    padding:0.1rem 0.6rem 0 0;
+  }
+  .letter strong{
+    color:var(--gold-soft);
+    font-weight:500;
+    font-style:italic;
+  }
+
+  /* setlist */
+  .setlist-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1.4rem;
+    margin-bottom:0.5rem;
+  }
+  .setlist-head h2{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.7rem, 3.4vw, 2.3rem);
+  }
+  .track{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:1.6rem;
+    padding:1.9rem 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .track .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.05em;
+    padding-top:0.25rem;
+  }
+  .track h3{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.3rem;
+    color:var(--cream);
+    margin-bottom:0.4rem;
+  }
+  .track p{
+    color:var(--muted);
+    font-size:1rem;
+    max-width:54ch;
+  }
+
+  /* photos */
+  .photo-block{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:3rem;
+    align-items:end;
+  }
+  @media (max-width:800px){
+    .photo-block{grid-template-columns:1fr;}
+  }
+  .photo-block--tight{
+    grid-template-columns:300px 1fr;
+    align-items:center;
+    gap:2.6rem;
+  }
+  .frame--small{
+    max-width:300px;
+    aspect-ratio:710/890;
+  }
+  .frame--small img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  @media (max-width:800px){
+    .photo-block--tight{grid-template-columns:1fr;}
+    .frame--small{max-width:220px; margin:0 auto;}
+  }
+  .frame{
+    position:relative;
+    border-radius:2px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -22px rgba(0,0,0,0.6);
+  }
+  .frame.print{
+    background:var(--cream);
+    padding:0.6rem 0.6rem 2.6rem;
+    transform:rotate(-1.6deg);
+    box-shadow:0 30px 55px -20px rgba(0,0,0,0.55);
+  }
+  .frame.print img{border-radius:1px;}
+  .frame img{width:100%; display:block; filter:saturate(0.95) contrast(1.02);}
+  .photo-caption{
+    margin-top:1.3rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .photo-copy{
+    align-self:center;
+  }
+  .photo-copy p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--gold-soft);
+    line-height:1.5;
+  }
+
+  /* closing */
+  .closing{
+    text-align:center;
+    padding-top:6rem;
+    padding-bottom:6rem;
+  }
+  .closing .quote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.5rem, 4vw, 2.3rem);
+    max-width:22ch;
+    margin:0 auto 2rem;
+    color:var(--gold-soft);
+    line-height:1.35;
+  }
+  .closing .signoff{color:var(--muted); font-size:1rem;}
+  .closing .signoff .name{
+    display:block;
+    margin-top:0.4rem;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--cream);
+    font-size:1.25rem;
+  }
+  footer{
+    text-align:center;
+    padding:2.6rem 6vw 3.4rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    opacity:0.6;
+  }
+
+  /* sound toggle */
+  .sound-toggle{
+    position:fixed;
+    right:1.4rem;
+    bottom:1.4rem;
+    z-index:50;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 14px 30px -12px rgba(0,0,0,0.6);
+    transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .sound-toggle:hover{transform:scale(1.06); border-color:var(--gold);}
+  .sound-toggle svg{width:20px; height:20px;}
+  .sound-toggle .bar{
+    fill:none;
+    stroke:var(--gold);
+    stroke-width:2;
+    stroke-linecap:round;
+    transform-origin:center;
+    animation:soundBar 1.1s ease-in-out infinite;
+  }
+  .sound-toggle.muted .bar{animation-play-state:paused; opacity:0.35;}
+  .bar1{animation-delay:0s;}
+  .bar2{animation-delay:0.15s;}
+  .bar3{animation-delay:0.3s;}
+  @keyframes soundBar{
+    0%,100%{transform:scaleY(0.4);}
+    50%{transform:scaleY(1);}
+  }
+  @media (max-width:700px){
+    .sound-toggle{right:1rem; bottom:1rem; width:46px; height:46px;}
+  }
+
+  /* ================= MOBILE REFINEMENTS ================= */
+  @media (max-width:700px){
+    section{padding:4.2rem 7vw 3.6rem;}
+    .letter-wrap{gap:1rem;}
+    .letter{font-size:1.15rem;}
+    .letter .drop{font-size:3.4rem; padding-right:0.4rem;}
+    .setlist-head{flex-wrap:wrap; gap:0.4rem;}
+    .track{grid-template-columns:36px 1fr; gap:1rem; padding:1.4rem 0;}
+    .track h3{font-size:1.12rem;}
+    .track p{font-size:0.94rem;}
+    .frame.print{padding:0.4rem 0.4rem 1.8rem;}
+    .photo-copy p:first-child{font-size:1.15rem;}
+    .closing{padding-top:4rem; padding-bottom:4rem;}
+    .hero-inner .tag{max-width:none;}
+  }
+  @media (max-width:420px){
+    .stub{padding:1.1rem 1rem 0.9rem;}
+    .stub .stub-name{font-size:1.15rem;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow" style="color:var(--gold-soft); margin-bottom:0.9rem;">Happy Teacher's Day</p>
+      <p class="eyebrow">guitar teacher · mentor · friend</p>
+      <h1>Rajat Sir</h1>
+      <p class="tag">A year of six strings, patient corrections, and the Mentor I actually needed.</p>
+    </div>
+    <div class="stub">
+      <div class="stub-top">
+        <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="34" r="9" stroke="#C9962E" stroke-width="2"/>
+          <circle cx="16" cy="34" r="3.2" stroke="#C9962E" stroke-width="1.4"/>
+          <path d="M21 28L34 8" stroke="#C9962E" stroke-width="2" stroke-linecap="round"/>
+          <path d="M23.5 24.5L26.5 26.5" stroke="#C9962E" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M26.5 20L29.5 22" stroke="#C9962E" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M29.5 15.5L32.5 17.5" stroke="#C9962E" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M32 6.5L36.5 9.5" stroke="#C9962E" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M35.5 4L39 9" stroke="#C9962E" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>Teacher's Day</span>
+      </div>
+      <div class="stub-name">Rajat Sir</div>
+      <div class="stub-tag">a small token of appreciation</div>
+      <div class="stub-row"><span>From</span><b>David Shahi</b></div>
+      <div class="barcode"></div>
+    </div>
+  </div>
+
+  <section class="reveal">
+    <p class="eyebrow" style="margin-bottom:2rem;">on stage</p>
+    <div class="photo-block photo-block--tight">
+      <div class="frame frame--small">
+        <img src="images/onstage.jpg" alt="Rajat sir performing on electric guitar under red stage lighting">
+      </div>
+      <div class="photo-copy">
+        <p>Where the lessons actually came from.</p>
+        <p class="photo-caption">live · guitar</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="letter-wrap">
+      <p class="eyebrow">a note, before anything else</p>
+      <p class="letter">
+        <span class="drop">D</span>ear Rajat Sir, it's been more than a year since I joined Icon, and in this time, anything I've learned about music is everything you've taught me — from the first scales and complete songs like <strong>Dadhelo</strong>, to everything since.
+      </p>
+      <p class="letter" style="margin-top:1.4rem;">
+        And also the way you helped me when I needed it most, in my difficult times — you helped me change and fix my life, a lot.
+      </p>
+      <p class="letter" style="margin-top:1.4rem;">
+        Thank you for everything, sir.<br><strong>Happy Teacher's Day.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="setlist-head">
+      <h2>What you taught me</h2>
+      <span class="eyebrow">3 tracks</span>
+    </div>
+    <div class="track">
+      <span class="num">01</span>
+      <div><h3>Patience over speed</h3><p>Slow, correct, and boring beats fast and sloppy, every single time.</p></div>
+    </div>
+    <div class="track">
+      <span class="num">02</span>
+      <div><h3>No need to worry about the future</h3><p>Trust the process, do the work in front of me, and let the rest come in its own time.</p></div>
+    </div>
+    <div class="track">
+      <span class="num">03</span>
+      <div><h3>Showing up matters</h3><p>For lessons, for hard conversations, for a year, consistently.</p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow" style="margin-bottom:2rem;">the wider circle</p>
+    <div class="photo-block">
+      <div class="frame print">
+        <img src="images/group.jpg" alt="Group photo with Rajat sir and friends">
+      </div>
+      <div class="photo-copy">
+        <p>The people this year of learning brought along, off stage and after hours.</p>
+        <p class="photo-caption">off stage · this past year</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing reveal">
+    <p class="quote">"Thank you for the chords, and for everything you said in between them."</p>
+    <p class="signoff">with real gratitude,<span class="name">— David Shahi</span></p>
+  </section>
+
+  <footer>made with gratitude · one year of lessons · 2026</footer>
+
+  <audio id="bg-audio" src="audio/solo_reverb.mp3" loop preload="auto"></audio>
+  <button class="sound-toggle muted" id="sound-toggle" aria-label="Toggle background music" title="Play music">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <line class="bar bar1" x1="6" y1="16" x2="6" y2="8"></line>
+      <line class="bar bar2" x1="12" y1="18" x2="12" y2="5"></line>
+      <line class="bar bar3" x1="18" y1="15" x2="18" y2="9"></line>
+    </svg>
+  </button>
+
+<script>
+  const audio = document.getElementById('bg-audio');
+  const soundBtn = document.getElementById('sound-toggle');
+  let playing = false;
+
+  function playAudio(){
+    audio.play().then(()=>{
+      playing = true;
+      soundBtn.classList.remove('muted');
+      soundBtn.title = 'Pause music';
+    }).catch(()=>{ /* browser blocked autoplay; wait for user click */ });
+  }
+
+  // try to start softly on load (many browsers will block this until a click)
+  window.addEventListener('load', playAudio);
+
+  soundBtn.addEventListener('click', ()=>{
+    if(playing){
+      audio.pause();
+      playing = false;
+      soundBtn.classList.add('muted');
+      soundBtn.title = 'Play music';
+    } else {
+      playAudio();
+    }
+  });
+</script>
+
+<script>
+  const targets = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  targets.forEach(t=>io.observe(t));
+</script>
+
+</body>
+</html>
